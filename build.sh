@@ -16,13 +16,10 @@
 
 
 # Install prerequisites.
-apt-get update
-
-apt-get install -y -q --no-install-recommends \
-  curl ca-certificates make g++ sudo bash
+clean-install curl ca-certificates make g++ sudo bash
 
 # Install Fluentd.
-/usr/bin/curl -sSL https://toolbelt.treasuredata.com/sh/install-ubuntu-xenial-td-agent2.sh | sh
+/usr/bin/curl -sSL https://toolbelt.treasuredata.com/sh/install-debian-stretch-td-agent2.sh | sh
 
 # Change the default user and group to root.
 # Needed to allow access to /var/log/docker/... files.
@@ -46,6 +43,3 @@ rm -rf /opt/td-agent/embedded/share/doc \
 
 apt-get remove -y make g++
 apt-get autoremove -y
-apt-get clean -y
-
-rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
