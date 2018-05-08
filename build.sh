@@ -1,4 +1,5 @@
 #!/bin/sh
+set -eux
 
 # Copyright 2017 The Kubernetes Authors.
 #
@@ -16,10 +17,10 @@
 
 
 # Install prerequisites.
-clean-install curl ca-certificates make g++ sudo bash
+clean-install curl ca-certificates make g++ sudo bash gnupg
 
 # Install Fluentd.
-/usr/bin/curl -sSL https://toolbelt.treasuredata.com/sh/install-debian-stretch-td-agent2.sh | sh
+/usr/bin/curl -sSL https://toolbelt.treasuredata.com/sh/install-debian-stretch-td-agent3.sh | sh
 
 # Change the default user and group to root.
 # Needed to allow access to /var/log/docker/... files.
@@ -27,8 +28,8 @@ sed -i -e "s/USER=td-agent/USER=root/" -e "s/GROUP=td-agent/GROUP=root/" /etc/in
 
 # Install the Elasticsearch Fluentd plug-in.
 # http://docs.fluentd.org/articles/plugin-management
-td-agent-gem install --no-document fluent-plugin-kubernetes_metadata_filter -v 1.0.1
-td-agent-gem install --no-document fluent-plugin-elasticsearch -v 2.6.1
+td-agent-gem install --no-document fluent-plugin-kubernetes_metadata_filter -v 2.0.0
+td-agent-gem install --no-document fluent-plugin-elasticsearch -v 2.10.0
 td-agent-gem install --no-document fluent-plugin-dogstatsd -v 0.0.6
 td-agent-gem install --no-document fluent-plugin-forest -v 0.3.3
 td-agent-gem install --no-document fluent-plugin-multi-format-parser -v 1.0.0
