@@ -1,4 +1,5 @@
 #!/bin/sh
+set -eux
 
 # Copyright 2017 The Kubernetes Authors.
 #
@@ -16,13 +17,10 @@
 
 
 # Install prerequisites.
-apt-get update
-
-apt-get install -y -q --no-install-recommends \
-  curl ca-certificates make g++ sudo bash
+clean-install curl ca-certificates make g++ sudo bash gnupg
 
 # Install Fluentd.
-/usr/bin/curl -sSL https://toolbelt.treasuredata.com/sh/install-ubuntu-xenial-td-agent2.sh | sh
+/usr/bin/curl -sSL https://toolbelt.treasuredata.com/sh/install-debian-stretch-td-agent3.sh | sh
 
 # Change the default user and group to root.
 # Needed to allow access to /var/log/docker/... files.
@@ -30,12 +28,12 @@ sed -i -e "s/USER=td-agent/USER=root/" -e "s/GROUP=td-agent/GROUP=root/" /etc/in
 
 # Install the Elasticsearch Fluentd plug-in.
 # http://docs.fluentd.org/articles/plugin-management
-td-agent-gem install --no-document fluent-plugin-kubernetes_metadata_filter -v 1.0.1
-td-agent-gem install --no-document fluent-plugin-elasticsearch -v 2.6.1
+td-agent-gem install --no-document fluent-plugin-kubernetes_metadata_filter -v 2.0.0
+td-agent-gem install --no-document fluent-plugin-elasticsearch -v 2.10.0
 td-agent-gem install --no-document fluent-plugin-dogstatsd -v 0.0.6
-td-agent-gem install --no-document fluent-plugin-forest -v 0.3.3
 td-agent-gem install --no-document fluent-plugin-multi-format-parser -v 1.0.0
 td-agent-gem install --no-document fluent-plugin-record-modifier -v 1.0.2
+td-agent-gem install --no-document fluent-plugin-systemd -v 0.3.1
 
 # Remove docs and postgres references
 rm -rf /opt/td-agent/embedded/share/doc \
@@ -46,6 +44,3 @@ rm -rf /opt/td-agent/embedded/share/doc \
 
 apt-get remove -y make g++
 apt-get autoremove -y
-apt-get clean -y
-
-rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
