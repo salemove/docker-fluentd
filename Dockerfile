@@ -22,14 +22,14 @@
 # Please see http://docs.fluentd.org/articles/install-by-deb for more
 # information about installing fluentd using deb package.
 
-FROM k8s.gcr.io/debian-base-amd64:0.3
+FROM k8s.gcr.io/debian-base-amd64:0.4.1
 
 # Ensure there are enough file descriptors for running Fluentd.
 RUN ulimit -n 65536
 
 # Disable prompts from apt.
 ENV DEBIAN_FRONTEND noninteractive
-ENV TD_AGENT_VERSION 3.1.1
+ENV TD_AGENT_VERSION 3.4.1
 
 # Copy the Fluentd configuration file.
 COPY td-agent.conf /etc/td-agent/td-agent.conf

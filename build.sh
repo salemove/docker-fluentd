@@ -28,12 +28,12 @@ sed -i -e "s/USER=td-agent/USER=root/" -e "s/GROUP=td-agent/GROUP=root/" /etc/in
 
 # Install the Elasticsearch Fluentd plug-in.
 # http://docs.fluentd.org/articles/plugin-management
-td-agent-gem install --no-document fluent-plugin-kubernetes_metadata_filter -v 2.0.0
-td-agent-gem install --no-document fluent-plugin-elasticsearch -v 2.10.0
+td-agent-gem install --no-document fluent-plugin-kubernetes_metadata_filter -v 2.1.6
+td-agent-gem install --no-document fluent-plugin-elasticsearch -v 3.5.2
 td-agent-gem install --no-document fluent-plugin-dogstatsd -v 0.0.6
 td-agent-gem install --no-document fluent-plugin-multi-format-parser -v 1.0.0
-td-agent-gem install --no-document fluent-plugin-record-modifier -v 1.0.2
-td-agent-gem install --no-document fluent-plugin-systemd -v 0.3.1
+td-agent-gem install --no-document fluent-plugin-record-modifier -v 2.0.1
+td-agent-gem install --no-document fluent-plugin-systemd -v 1.0.2
 
 # Remove docs and postgres references
 rm -rf /opt/td-agent/embedded/share/doc \
