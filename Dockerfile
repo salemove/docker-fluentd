@@ -29,7 +29,7 @@ RUN ulimit -n 65536
 
 # Disable prompts from apt.
 ENV DEBIAN_FRONTEND noninteractive
-ENV TD_AGENT_VERSION 3.1.1
+ENV TD_AGENT_VERSION 3.4.1
 
 # Copy the Fluentd configuration file.
 COPY td-agent.conf /etc/td-agent/td-agent.conf
