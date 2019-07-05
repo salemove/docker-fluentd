@@ -17,7 +17,7 @@ set -eux
 
 
 # Install prerequisites.
-clean-install curl ca-certificates make g++ sudo bash gnupg
+clean-install curl ca-certificates make g++ sudo bash gnupg libsystemd0
 
 # Install Fluentd.
 /usr/bin/curl -sSL https://toolbelt.treasuredata.com/sh/install-debian-stretch-td-agent3.sh | sh
