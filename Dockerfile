@@ -22,7 +22,7 @@
 # Please see http://docs.fluentd.org/articles/install-by-deb for more
 # information about installing fluentd using deb package.
 
-FROM k8s.gcr.io/debian-base-amd64:0.3
+FROM k8s.gcr.io/debian-base-amd64:0.4.1
 
 # Ensure there are enough file descriptors for running Fluentd.
 RUN ulimit -n 65536
