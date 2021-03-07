@@ -7,6 +7,7 @@ Fluentd image with added plugins:
 * fluent-plugin-multi-format-parser -v 1.0.0
 * fluent-plugin-record-modifier -v 2.0.1
 * fluent-plugin-systemd -v 1.0.2
+* fluent-plugin-aws-elasticsearch-service -v 2.4.0
 
 ## Local build 
 

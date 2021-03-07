@@ -34,6 +34,7 @@ td-agent-gem install --no-document fluent-plugin-dogstatsd -v 0.0.6
 td-agent-gem install --no-document fluent-plugin-multi-format-parser -v 1.0.0
 td-agent-gem install --no-document fluent-plugin-record-modifier -v 2.0.1
 td-agent-gem install --no-document fluent-plugin-systemd -v 1.0.2
+td-agent-gem install --no-document fluent-plugin-aws-elasticsearch-service -v 2.4.0
 
 # Remove docs and postgres references
 rm -rf /opt/td-agent/embedded/share/doc \
