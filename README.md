@@ -13,5 +13,5 @@ Fluentd image with added plugins:
 
 To run build locally please use the next command:
 ```bash
-docker build -t salemove/docker-fluentd:local --build-arg TD_AGENT_VERSION=3.4.1 .
+docker build -t salemove/docker-fluentd:local --build-arg FLUENTD_VERSION=1.4.2 .
 ```

@@ -8,7 +8,7 @@ def DOCKER_PROJECT_NAME = 'salemove/docker-fluentd'
 def DOCKER_REGISTRY_URL = 'https://registry.hub.docker.com'
 def DOCKER_REGISTRY_CREDENTIALS_ID = '6992a9de-fab7-4932-9907-3aba4a70c4c0'
 
-def TD_AGENT_VERSION = '3.4.1'
+def FLUENTD_VERSION = '1.4.2'
 
 properties([
     pipelineTriggers([issueCommentTrigger('!build')])
@@ -19,11 +19,11 @@ withResultReporting(slackChannel: '#tm-inf') {
   inDockerAgent(containers: [imageScanner.container()]) {
     checkout(scm)
     def shortCommit = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
-    def version = "${TD_AGENT_VERSION}-${shortCommit}"
+    def version = "${FLUENTD_VERSION}-${shortCommit}"
     def image
     stage('Build docker image') {
       ansiColor('xterm') {
-        image = docker.build("${DOCKER_PROJECT_NAME}:${version}", "--build-arg TD_AGENT_VERSION=${TD_AGENT_VERSION} .")
+        image = docker.build("${DOCKER_PROJECT_NAME}:${version}", "--build-arg FLUENTD_VERSION=${FLUENTD_VERSION} .")
       }
     }
     stage('Scan docker image') {
