@@ -1,0 +1,28 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "dependencyDashboard": true,
+  "dependencyDashboardAutoclose": true,
+  "assigneesFromCodeOwners": true,
+  "packageRules": [
+    {
+      "matchManagers": ["regex"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "Docker file dependencies (non-major)"
+    },
+    {
+      "matchManagers": ["bundler"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "Ruby gems (non-major)"
+    }
+  ],
+  "regexManagers": [
+    {
+      "fileMatch": [
+        "(.+/)?Dockerfile$"
+      ],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>[a-z-]+?) depName=(?<depName>[^\\s]+?)(?: lookupName=(?<lookupName>[^\\s]+?))?(?: versioning=(?<versioning>[a-z-]+?))?\\s(?:ENV|ARG) .+?_VERSION=(?<currentValue>.+?)\\s"
+      ]
+    }
+  ]
+}
