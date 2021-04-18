@@ -1,3 +1,4 @@
+# renovate: datasource=docker depName=fluent/fluentd
 ARG FLUENTD_VERSION=1.4.2
 FROM fluent/fluentd:v${FLUENTD_VERSION}-debian-2.0
 
